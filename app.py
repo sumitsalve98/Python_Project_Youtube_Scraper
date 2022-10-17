@@ -31,19 +31,6 @@ def homePage():
 @cross_origin()
 def index():
     if request.method == 'POST':
-        # recieving urls
-        try:
-            url_string = request.form['content'].replace(" ","")
-            url_list = url_string.split(",")
-            urls = []
-            for i in url_list:
-                i.strip()
-                urls.append(i)
-
-        except Exception as e:
-            logging.error(f"Error while recieving urls. Error:{str(e)}")
-
-
 
         # creating log file
         try:
@@ -61,6 +48,41 @@ def index():
         except Exception as e:
             logging.error(f"Error while creating log file. Error: {e}")
             print(f"Error while creating log file. Error: {e}")
+
+
+        # recieving channel urls
+        try:
+            url_string = request.form['content'].replace(" ","")
+            url_list = url_string.split(",")
+            urls = []
+            for i in url_list:
+                i.strip()
+                urls.append(i)
+            logging.info(f"channel urls recieved successfully. urls = {urls}")
+        except Exception as e:
+            logging.error(f"Error while recieving urls. Error:{str(e)}")
+
+
+
+        # taking user input about how many videos to scrap
+        try:
+            no_vid = request.form['no_of_vid'].replace(" ","")
+            no_vid = no_vid.strip()
+            no_vid = int(no_vid)
+            print(type(no_vid))
+            logging.info(f"{no_vid} videos are to be scraped")
+        except Exception as e:
+            logging.error(f"Error while recieving no_of_vid. Error:{str(e)}")
+
+
+        try:
+            no_com = request.form['no_of_comment'].replace(" ","")
+            no_com = no_com.strip()
+            no_com = int(no_com)
+            print(type(no_com))
+            logging.info(f"{no_com} comments are to be scraped")
+        except Exception as e:
+            logging.error(f"Error while recieving no_com. Error:{str(e)}")
 
 
 
@@ -324,37 +346,41 @@ def index():
             print(f"Video section opened for youtuber Id: {Id}")
             time.sleep(5)
 
-            # scrolling down
-            prev_h = 0
-            max = 2400
-            while True:
-                height = driver.execute_script("""
-                                    function getActualHeight() {
-                                        return Math.max(
-                                            Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
-                                            Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
-                                            Math.max(document.body.clientHeight, document.documentElement.clientHeight)
-                                        );
-                                    }
-                                    return getActualHeight();
-                                """)
-                driver.execute_script(f"window.scrollTo({prev_h},{prev_h + 200})")
-                # fix the time sleep value according to your network connection
-                time.sleep(2)
-                prev_h += 200
-                if prev_h >= max:
-                    break
+            if no_vid <= 30:
+                pass
+            else:
+                maxscroll1 = no_vid * 40
+                # scrolling down
+                prev_h = 0
+                while True:
+                    height = driver.execute_script("""
+                                        function getActualHeight() {
+                                            return Math.max(
+                                                Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+                                                Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
+                                                Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+                                            );
+                                        }
+                                        return getActualHeight();
+                                    """)
+                    driver.execute_script(f"window.scrollTo({prev_h},{prev_h + 200})")
+                    # fix the time sleep value according to your network connection
+                    time.sleep(2)
+                    prev_h += 200
+                    if prev_h >= maxscroll1:
+                        break
 
             time.sleep(2)
+
             soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 
             # scrapping all title
             video_titles = soup.findAll('a', id='video-title')
-            print(len(video_titles))
+            print(no_vid , len(video_titles))
 
             # itering through all titles
-            for video_number, title in enumerate(video_titles[0:50]):
+            for video_number, title in enumerate(video_titles[0:no_vid]):
                 noshort = title["href"]
                 noshort = str(noshort)
                 if noshort[0:7] == '/shorts':
@@ -615,14 +641,11 @@ def index():
 
 
                     # scrolling down depending on amounts of comments are available on video
-                    maxscroll = (total_comments * 100)+2000
+                    if total_comments < no_com:
+                        maxscroll = (total_comments * 100)+1000
 
-                    # if you want to limit scroll to 12000 which is able to scrap aprox 100-120 comments, remove # from code below
-
-                    #if maxscroll > 12000:
-                        #maxscroll = 12000
-                    #else:
-                        #pass
+                    if total_comments > no_com:
+                        maxscroll = (no_com * 100)+1000
 
 
                     # opening video url second time to scrap comments
@@ -656,7 +679,7 @@ def index():
                         # scraping name of commentor
                         authors = soup.findAll('a', id='author-text')
                         print(f"Total comment = {total_comments} ; Total scrapped comment,{len(authors)}")
-                        for comment_number, author_name in enumerate(authors):
+                        for comment_number, author_name in enumerate(authors[0:no_com]):
                             comment_number = comment_number+1
                             Comments_no_list.append(comment_number)
                             T_Video_Id.append(video_id)
@@ -674,7 +697,7 @@ def index():
                     try:
                         #scraping comment content
                         comments = soup.findAll(id='content-text')
-                        for comment in comments:
+                        for comment in comments[0:no_com]:
                             comment = comment.text
                             comment = comment.replace("\n", " ")
                             comment = comment.replace("  ", " ")
