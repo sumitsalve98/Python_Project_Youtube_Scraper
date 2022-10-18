@@ -642,10 +642,10 @@ def index():
 
                     # scrolling down depending on amounts of comments are available on video
                     if total_comments < no_com:
-                        maxscroll = (total_comments * 150)+1000
+                        maxscroll = (total_comments * 100)+1000
 
                     if total_comments > no_com:
-                        maxscroll = (no_com * 150)+1000
+                        maxscroll = (no_com * 100)+1000
 
 
                     # opening video url second time to scrap comments
