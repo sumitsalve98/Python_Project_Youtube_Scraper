@@ -91,7 +91,7 @@ def index():
             df = pd.DataFrame(columns=['youtuber_id', 'channel_name', 'subscribers', 'channel_url', 'instagram', 'facebook','linkedin', 'twitter'])
             df.to_csv('youtubers.csv', mode="w+", index=False)
 
-            df = pd.DataFrame(columns=['youtuber_id', 'video_id','upload_date', 'title', 'views', 'likes', 'comments', 'description', 'length_in_min', 'url', 'Download'])
+            df = pd.DataFrame(columns=['youtuber_id', 'video_id','upload_date', 'title', 'views', 'likes', 'comments', 'description', 'length_in_min', 'url', 'download'])
             df.to_csv('videos.csv', mode="w+", index=False)
 
             df = pd.DataFrame(columns=['video_id', 'comment_no', 'author_name', 'comment'])
@@ -144,6 +144,9 @@ def index():
             logging.error(f"Error while connecting to mongodb. Error: {e}")
             print(f"Error while connecting to mongodb. Error: {e}")
 
+        option = webdriver.ChromeOptions()
+        # option.add_argument("--headless")
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=option)
 
         # opening urls one by one
         for Id, Ytuber in enumerate(urls):
@@ -160,9 +163,6 @@ def index():
             Id = Id+1
             Id_List.append(Id)
 
-            option = webdriver.ChromeOptions()
-            #option.add_argument("--headless")
-            driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=option)
 
             #opening about section of channel
             driver.get(f"{Ytuber}/about")
@@ -618,7 +618,7 @@ def index():
                             "description": Description,
                             "length_in_min": Length_in_min,
                             "url": Link_list,
-                            "Download": Download_link
+                            "download": Download_link
                         }
 
                         df = pd.DataFrame(data)
