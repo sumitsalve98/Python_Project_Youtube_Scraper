@@ -8,15 +8,15 @@
 
 {% block body %}
 <div class="content">
-    <h1 style="text-align: center">Paste</h1>
+    <h1 style="text-align: center">youtube data scraper by sumit salve</h1>
 
     <div class="form">
         <form action="/scrap" method="POST">
-            <label for="content">Channel urls  (use "," for multiple):</label><br>
+            <label for="content">Channel urls  (use ' , ' for multiple):</label><br>
             <input type="text" name="content" id="content"><br>
-            <label for="no_of_vid">N of videos:</label><br>
+            <label for="no_of_vid">N of videos per channel:</label><br>
             <input type="text" name="no_of_vid" id="no_of_vid"><br>
-            <label for="no_of_comment">N of comment:</label><br>
+            <label for="no_of_comment">N of comments per video:</label><br>
             <input type="text" name="no_of_comment" id="no_of_comment"><br><br>
             <input type="submit" value="Scrap">
         </form>
