@@ -30,8 +30,7 @@ This scraper is able to scrap useful information from youtube like
 ![gif2](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/gif2.gif)
 ![gif3](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/gif3.gif)
 
-## Demo video
-https://drive.google.com/file/d/1RzcwSfRmvLZsOi7d0zXrsq0k-fJZ5nxE/view?usp=sharing
+
 ## webpage Screenshot
 
 ![Sql table: youtubers](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/main%20view.png?raw=true)
@@ -47,10 +46,13 @@ https://drive.google.com/file/d/1RzcwSfRmvLZsOi7d0zXrsq0k-fJZ5nxE/view?usp=shari
 ![collection: youtubers](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/coll-youtubers.png?raw=true)
 ![collection: videos](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/coll-videos.png?raw=true)
 ![collection: comments](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/coll-comments.png?raw=true)
+
 ## Documentation
 
 [scraped data](https://drive.google.com/file/d/1L1e0R6uZWjtYsNt53BNEVJYR45Uz_HbX/view?usp=sharing)
 
+## Demo video
+https://drive.google.com/file/d/1RzcwSfRmvLZsOi7d0zXrsq0k-fJZ5nxE/view?usp=sharing
 
 ## Related
 
