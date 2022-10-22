@@ -1,6 +1,5 @@
 
-# Hi, I'm Sumit! 👋
-
+# Webscraping youtube using selenium
 
 This is youtube Webscraping project that returns you relational database of three table.
 
@@ -33,7 +32,7 @@ This scraper is able to scrap useful information from youtube like
 
 ## Demo video
 https://drive.google.com/file/d/1RzcwSfRmvLZsOi7d0zXrsq0k-fJZ5nxE/view?usp=sharing
-## webpage layout
+## webpage Screenshot
 
 ![Sql table: youtubers](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/main%20view.png?raw=true)
 ## MySQL Screenshots
