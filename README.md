@@ -26,7 +26,6 @@ This scraper is able to scrap useful information from youtube like
 
 ## Demo gif
 
-Insert gif or link to demo
 
 ![gif1](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/gif1.gif)
 ![gif2](https://github.com/sumitsalve98/Python_Project_Youtube_Scraper/blob/master/extras/gif2.gif)
@@ -67,7 +66,7 @@ Here are some related projects
 
 
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://sumitsalve98.github.io/MyPortfolio/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sumit-salve-72b818217/)
 
 
